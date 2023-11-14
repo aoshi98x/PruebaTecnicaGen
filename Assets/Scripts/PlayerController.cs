@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     {
         rigidPlayer = GetComponent<Rigidbody2D>();
         rigidPlayer.gravityScale = 0;
-        //animatorControl = GetComponent<Animator>();
+        animatorControl = GetComponent<Animator>();
     }
 
 
@@ -33,16 +33,28 @@ public class PlayerController : MonoBehaviour
         movX = Input.GetAxisRaw("Horizontal");
         movY = Input.GetAxisRaw("Vertical");
         moveInput = new Vector2(movX, movY);
+        if(Input.GetButton("Run"))
+        {
+            speedMov = 4;
+        }
+        else
+        {
+            speedMov = 2;
+        }
     }
 
     private void FixedUpdate()
     {
         if(Input.GetAxisRaw("Horizontal")!= 0 && Input.GetAxisRaw("Vertical")!= 0)
         {
+            animatorControl.SetFloat("speed", 0.0f);
             rigidPlayer.bodyType = RigidbodyType2D.Static;
         }
         else
         {
+            animatorControl.SetFloat("speed", moveInput.sqrMagnitude);
+            animatorControl.SetFloat("horizontal", movX);
+            animatorControl.SetFloat("vertical", movY);
             rigidPlayer.bodyType = RigidbodyType2D.Dynamic;
             Movement();
         }
