@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 5622631491579719872}
   - component: {fileID: 5622631491579719873}
   - component: {fileID: 5297809842944881525}
-  - component: {fileID: 4205940402447980228}
   - component: {fileID: 8597124516072217909}
+  - component: {fileID: 959699025}
+  - component: {fileID: 959699024}
+  - component: {fileID: 959699026}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -76,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 2029059729, guid: 989d7734985551d4ea4b1faee1995481, type: 3}
+  m_Sprite: {fileID: -375642015, guid: 989d7734985551d4ea4b1faee1995481, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -107,33 +109,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &4205940402447980228
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5622631491579719874}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0031547546, y: -0.3722427}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1.25}
-    newSize: {x: 0.16, y: 0.2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.75394154, y: 0.5055146}
-  m_EdgeRadius: 0
+  m_Constraints: 4
 --- !u!114 &8597124516072217909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,4 +125,65 @@ MonoBehaviour:
   speedMov: 2
   movX: 0
   movY: 0
+  inventory: {fileID: 0}
+  canTakeResource: 0
   Walk: {fileID: 0}
+--- !u!70 &959699025
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5622631491579719874}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.019818783, y: -0.34696728}
+  m_Size: {x: 0.54813766, y: 0.55606544}
+  m_Direction: 0
+--- !u!95 &959699024
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5622631491579719874}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1a233282132badd46abfa1cf6c96fa68, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &959699026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5622631491579719874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be2ba27655f83fc46ad3f17be8499135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  water: 0
+  wood: 0
+  food: 0
+  stone: 0
+  elements:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  storage: {fileID: 0}

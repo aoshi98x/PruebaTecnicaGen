@@ -17,11 +17,25 @@ public class PlayerController : MonoBehaviour
 
     [Space]
 
+    [Header("Collectables")]
+    [SerializeField] Inventory inventory;
+    [SerializeField]bool canTakeResource;
+    string actualResource;
+    [SerializeField] GameObject inventoryUI;
+    bool isNearToHouse;
+    [SerializeField]bool canSeeInventory;
+
+    [Space]
+
     [Header("Sound")]
     [SerializeField] AudioClip Walk;
 
     void Start()
     {
+        inventoryUI = GameObject.Find("ObjectsStored");
+        inventoryUI.SetActive(false);
+        canSeeInventory = false;
+        inventory = GetComponent<Inventory>();  
         rigidPlayer = GetComponent<Rigidbody2D>();
         rigidPlayer.gravityScale = 0;
         animatorControl = GetComponent<Animator>();
@@ -40,6 +54,44 @@ public class PlayerController : MonoBehaviour
         else
         {
             speedMov = 2;
+        }
+        if(Input.GetMouseButtonDown(0) && canTakeResource)
+        {
+            switch (actualResource)
+            {
+                case "Water":
+
+                    if(CanCatchResource())
+                        inventory.water += 1;
+
+                    break;
+                
+                case "Wood":
+
+                    if (CanCatchResource())
+                        inventory.wood += 1;
+
+                    break;
+                
+                case "Food":
+
+                    if (CanCatchResource())
+                        inventory.food += 1;
+
+                    break;
+
+                case "Stone":
+
+                    if (CanCatchResource())
+                        inventory.stone += 1;
+
+                    break;
+            }
+        }
+        if(Input.GetButtonDown("Storage") && isNearToHouse)
+        {
+            canSeeInventory = !canSeeInventory;
+            inventoryUI.SetActive(canSeeInventory);
         }
     }
 
@@ -62,5 +114,55 @@ public class PlayerController : MonoBehaviour
     void Movement()
     {
         rigidPlayer.MovePosition(rigidPlayer.position + moveInput.normalized * speedMov * Time.fixedDeltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Water":
+                canTakeResource = true;
+                actualResource = collision.tag;
+                break;
+
+            case "Wood":
+                canTakeResource = true;
+                actualResource = collision.tag;
+                break;
+
+            case "Food":
+                canTakeResource = true;
+                actualResource = collision.tag;
+                break;
+
+            case "Stone":
+                canTakeResource = true;
+                actualResource = collision.tag;
+                break;
+        }
+        if (collision.gameObject.CompareTag("House"))
+        { 
+            isNearToHouse = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        canTakeResource = false;
+        isNearToHouse = false;
+        canSeeInventory = false;
+        inventoryUI.SetActive(false);
+    }
+    bool CanCatchResource()
+    {
+        int dice;
+        dice = Random.Range(1, 7);
+        if (dice == 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
