@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -155,7 +156,7 @@ public class PlayerController : MonoBehaviour
     bool CanCatchResource()
     {
         int dice;
-        dice = Random.Range(1, 7);
+        dice = UnityEngine.Random.Range(1, 7);
         if (dice == 1)
         {
             return true;
