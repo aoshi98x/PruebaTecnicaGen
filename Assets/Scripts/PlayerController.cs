@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     [Space]
 
     [Header("Sound")]
-    [SerializeField] AudioClip Walk;
+    [SerializeField] AudioClip walkSound, extractSound, collectSound;
 
     void Start()
     {
@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
         }
         if(Input.GetMouseButtonDown(0) && canTakeResource)
         {
+            AudioController.Instance.SFXLoop(extractSound);
             switch (actualResource)
             {
                 case "Water":
@@ -116,6 +117,10 @@ public class PlayerController : MonoBehaviour
     {
         rigidPlayer.MovePosition(rigidPlayer.position + moveInput.normalized * speedMov * Time.fixedDeltaTime);
     }
+    public void WalkSound()
+    {
+        AudioController.Instance.SFXLoop(walkSound);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -159,6 +164,7 @@ public class PlayerController : MonoBehaviour
         dice = UnityEngine.Random.Range(1, 7);
         if (dice == 1)
         {
+            AudioController.Instance.SFXLoop(collectSound);
             return true;
         }
         else

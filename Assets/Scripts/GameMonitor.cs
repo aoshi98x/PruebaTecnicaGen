@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameMonitor : MonoBehaviour
 {
@@ -16,9 +17,11 @@ public class GameMonitor : MonoBehaviour
     [SerializeField] GameObject winUI, loseUI;
     [SerializeField] float limitTime, maxTime, timeToLose;
     public bool canCountTime;
+    [SerializeField] Slider volumeSlider;
     // Start is called before the first frame update
     void Start()
     {
+        AudioController.Instance.ReplaceMusic();
         Time.timeScale = 0;
         maxAmountWater = Random.Range(10,20);
         maxAmountWood = Random.Range(10,20);
@@ -85,5 +88,9 @@ public class GameMonitor : MonoBehaviour
     {
         Time.timeScale = 1;
         canCountTime = true;
+    }
+    public void ChangeVolume()
+    {
+        AudioController.Instance.audioSource.volume = volumeSlider.value;
     }
 }

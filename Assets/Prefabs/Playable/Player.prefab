@@ -127,7 +127,11 @@ MonoBehaviour:
   movY: 0
   inventory: {fileID: 0}
   canTakeResource: 0
-  Walk: {fileID: 0}
+  inventoryUI: {fileID: 0}
+  canSeeInventory: 0
+  walkSound: {fileID: 8300000, guid: 582a8b534325e934184138ef1a6c6710, type: 3}
+  extractSound: {fileID: 8300000, guid: 41ddffe0fac547e45937997abfa5bf9e, type: 3}
+  collectSound: {fileID: 8300000, guid: ea2fd5ea43a19294f92505fcf452a23b, type: 3}
 --- !u!70 &959699025
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
